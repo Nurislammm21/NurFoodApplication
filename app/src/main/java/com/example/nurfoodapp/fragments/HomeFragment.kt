@@ -18,9 +18,16 @@ import com.example.nurfoodapp.viewModel.HomeVIewModel
 
 
 class HomeFragment : Fragment() {
-private lateinit var binding : FragmentHomeBinding
-private  val homeViewModel : HomeVIewModel by viewModels()
+    private lateinit var binding: FragmentHomeBinding
+    private val homeViewModel: HomeVIewModel by viewModels()
+    private lateinit var randomMeal : Meal
 
+
+    companion object{
+            const val MEAL_ID = "com.example.nurfoodapp.fragments"
+            const val MEAL_NAME = "com.example.nurfoodapp.fragments"
+            const val MEAL_THUMB = "com.example.nurfoodapp.fragments"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,18 +52,22 @@ private  val homeViewModel : HomeVIewModel by viewModels()
 
     private fun onRandomClick(){
         binding.randomMealCardView.setOnClickListener{
-            startActivity(Intent(activity,MealActivity::class.java))
+            val intent = Intent(activity,MealActivity::class.java)
+            intent.putExtra(MEAL_ID,randomMeal.idMeal)
+            intent.putExtra(MEAL_NAME,randomMeal.strMeal)
+            intent.putExtra(MEAL_THUMB,randomMeal.strMealThumb)
+            startActivity(intent)
         }
     }
 
 
     private fun observerRandomMeal() {
-            homeViewModel.observeRandomMealLivedata().observe(viewLifecycleOwner,object  : Observer<Meal>{
-                override fun onChanged(value: Meal) {
-                   Glide.with(this@HomeFragment).load(value.strMealThumb).into(binding.imageRandomMeal)
-                }
+            homeViewModel.observeRandomMealLivedata().observe(viewLifecycleOwner) { meal ->
+                Glide.with(this@HomeFragment).load(meal!!.strMealThumb)
+                    .into(binding.imageRandomMeal)
 
-            })
+                this.randomMeal = meal
+            }
 
     }
 }

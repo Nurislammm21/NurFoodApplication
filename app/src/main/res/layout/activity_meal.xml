@@ -63,6 +63,7 @@
             android:layout_height="match_parent">
 
             <LinearLayout
+                android:id="@+id/linear_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -75,6 +76,7 @@
                 >
 
                     <TextView
+                        android:id="@+id/txt_category"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="Category : Steak"
@@ -85,6 +87,7 @@
                         android:layout_weight="1"
                             />
                 <TextView
+                    android:id="@+id/txt_area"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Place : Almaty"
@@ -93,14 +96,58 @@
                     android:drawableLeft="@drawable/ic_gps"
                     android:drawableTint="@color/g_black"
                     android:layout_weight="0.5"
-
                     />
 
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/instructions_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" - Instructions : "
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:fontFamily="@font/alegreya_sc"
+                android:textSize="@dimen/_15ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linear_layout"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                />
+
+            <TextView
+                android:id="@+id/txt_instructions_step"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/instructions_txt"
+                app:layout_constraintTop_toBottomOf="@id/instructions_txt"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/_2sdp"
+
+                />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
 
+
+   <ImageView
+       android:id="@+id/image_youtube"
+       android:layout_width="@dimen/_40sdp"
+       android:layout_height="@dimen/_40sdp"
+       android:layout_gravity="bottom|center"
+       android:src="@drawable/ic_youtube"
+       android:layout_marginBottom="@dimen/_10sdp"/>
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        app:layout_anchor="@id/app_bar"
+        app:layout_anchorGravity="bottom"
+        android:visibility="gone"
+        />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
