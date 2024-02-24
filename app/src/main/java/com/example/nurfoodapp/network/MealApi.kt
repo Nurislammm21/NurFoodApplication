@@ -1,6 +1,7 @@
 package com.example.nurfoodapp.network
 
 
+import com.example.nurfoodapp.data.CategoryList
 import com.example.nurfoodapp.data.Meal
 import com.example.nurfoodapp.data.MealList
 import retrofit2.Call
@@ -15,6 +16,13 @@ interface MealApi {
 
     @GET("lookup.php?")
     fun getMealDetails(@Query("i")id: String): Call<MealList>
+
+
+    @GET("filter.php?")
+    fun getPopularItems(@Query("c") categoryName: String ): Call<CategoryList>
+
+
+
 }
 
 
